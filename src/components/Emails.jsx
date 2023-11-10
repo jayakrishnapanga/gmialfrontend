@@ -68,7 +68,7 @@ const Emails = () => {
         setSelectedButton(button);
     }
     return (
-        <Box style={openDrawer ? { marginLeft: 250, width: '100%' } : { marginLeft:90,width: '80%' } }>
+        <Box style={openDrawer ? { marginLeft: 250, width: '100%' } : { marginLeft:90,width: '100%' } }>
         <Box style={{ padding: '20px 10px 0 10px', display: 'flex', alignItems: 'center', backgroundColor: select ? 'white' : 'transparent'  }}>
             <Checkbox  size="small" onChange={(e) => selectAllEmails(e)} /> {'▼'}
            {!select &&(
