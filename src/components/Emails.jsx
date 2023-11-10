@@ -20,6 +20,8 @@ import RefreshOutlinedIcon from '@mui/icons-material/RefreshOutlined';
 import AddTaskOutlinedIcon from '@mui/icons-material/AddTaskOutlined';
 import DriveFileMoveOutlinedIcon from '@mui/icons-material/DriveFileMoveOutlined';
 import LabelOutlinedIcon from '@mui/icons-material/LabelOutlined';
+import { Sidebar_Datamore } from '../config/sidebarconfig';
+import { Sidebar_Datamoreexception } from '../config/sidebarconfig';
 const Emails = () => {
     const [starredEmail, setStarredEmail] = useState(false);
     const [selectedEmails, setSelectedEmails] = useState([]);
@@ -31,11 +33,17 @@ const Emails = () => {
     const getEmailsService = useApi(API_URLS.getEmailFromType);
     const deleteEmailsService = useApi(API_URLS.deleteEmails);
     const moveEmailsToBin = useApi(API_URLS.moveEmailsToBin);
+    const typeExistsInSidebar = Sidebar_Datamoreexception.some(item => item.name === type);
+    // useEffect(() => {
+    //     getEmailsService.call({}, type);
+    // }, [type, starredEmail])
+    // const typeExistsInSidebar = Sidebar_Datamore.some(item => item.name === type);
 
     useEffect(() => {
-        getEmailsService.call({}, type);
-    }, [type, starredEmail])
-
+        if (!typeExistsInSidebar) {
+            getEmailsService.call({}, type);
+        }
+    }, [type, starredEmail]);
     const selectAllEmails = (e) => {
         
         if (e.target.checked) {
@@ -60,7 +68,7 @@ const Emails = () => {
         setSelectedButton(button);
     }
     return (
-        <Box style={openDrawer ? { marginLeft: 250, width: '100%' } : { width: '100%' } }>
+        <Box style={openDrawer ? { marginLeft: 250, width: '100%' } : { marginLeft:90,width: '80%' } }>
         <Box style={{ padding: '20px 10px 0 10px', display: 'flex', alignItems: 'center', backgroundColor: select ? 'white' : 'transparent'  }}>
             <Checkbox  size="small" onChange={(e) => selectAllEmails(e)} /> {'▼'}
            {!select &&(
@@ -125,7 +133,7 @@ const Emails = () => {
                 {
                     getEmailsService?.response?.map(email => (
                         <Email 
-                            email={email} 
+                            email={email}  
                             key={email.id}
                             setStarredEmail={setStarredEmail} 
                             selectedEmails={selectedEmails}
@@ -135,8 +143,8 @@ const Emails = () => {
                         />
                     ))
                 }
-            </List>
-        }
+           </List>
+        } 
         {
             getEmailsService?.response?.length === 0 &&
                 <NoMails message={EMPTY_TABS[type]} />

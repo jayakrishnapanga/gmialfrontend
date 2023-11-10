@@ -5,7 +5,7 @@ const Sidebar=({openDrawer})=>{
     return(
         <Drawer 
         anchor='left'
-        open={openDrawer}
+        open={true}
         hideBackdrop={true}
         ModalProps={{
             keepMounted:true
@@ -14,14 +14,14 @@ const Sidebar=({openDrawer})=>{
         sx={{
             '& .MuiDrawer-paper':{
                 marginTop:'64px',
-                width:250,
-                background:'#F5F5F5',
+                width: openDrawer ? 250 : 65, 
+                background:'white',
                 borderRight:'none',
                 height:'calc(100vh-64px'
             }
         }}
          >
-   <SidebarContent/>
+   <SidebarContent openSidebar={openDrawer}/>
         </Drawer>
     )
 }

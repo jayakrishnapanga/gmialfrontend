@@ -2,7 +2,7 @@ import React from "react";
 import {AppBar,Toolbar,styled,InputBase, Box} from '@mui/material'
 import {AccountCircleOutlined, AppsOutlined, HelpOutlineOutlined, Menu as MenuIcon,Search, SettingsOutlined, Tune} from '@mui/icons-material';
 import { gmaillogo } from "../constants/gmaillogo";
-
+import { useState } from "react";
 const StyledAppBar=styled(AppBar)({
     background:'#F5F5F5',
     boxShadow:'none'
@@ -34,11 +34,18 @@ const Optionswapper=styled(Box)({
     }
 })
 const Header=({toggledrawer})=>{
+    const [menuIconClicked, setMenuIconClicked] = useState(false);
 
+    const handleMenuIconClick = () => {
+      setMenuIconClicked(!menuIconClicked);
+      // Call your toggledrawer function here if needed
+      toggledrawer();
+    };
+   
     return(
         <StyledAppBar position="static">
             <Toolbar>
-             <MenuIcon color="action" onClick={toggledrawer}/>
+             <MenuIcon color="action"   onClick={handleMenuIconClick} style={{cursor:'pointer'}}/>
              <img src={gmaillogo} alt='logo' style={{width:120,marginLeft:20}}/>
             <Styledsearchwapper>
                 <Search color="action"/>

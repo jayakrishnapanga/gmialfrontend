@@ -42,7 +42,7 @@ const Main = () => {
     
     return (
         <>
-            <Header toggleDrawer={toggleDrawer} />
+          <Header toggledrawer={toggleDrawer} />
             <Wrapper>
                 <Sidebar toggleDrawer={toggleDrawer} openDrawer={openDrawer} />
                 <Suspense fallback={<SuspenseLoader />} >

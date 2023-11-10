@@ -30,11 +30,11 @@ export const Sidebar_Data=[
         title:'Drafts',
         icon:InsertDriveFileOutlined
     },
-    {
-            name:'allmail',
-            title:'Allmails',
-            icon:MailOutline
-        },
+    // {
+    //         name:'allmail',
+    //         title:'Allmails',
+    //         icon:MailOutline
+    //     },
     
     // {
     //     name:'bin',
@@ -83,4 +83,35 @@ export const Sidebar_Datamore=[
     },
   
 
+]
+
+
+export const Sidebar_Datamoreexception=[
+   
+    {
+        name:'important',
+        title:'Important',
+        icon:LabelImportantOutlinedIcon
+    },
+    {
+        name:'chats',
+        title:'Chats',
+        icon:SmsOutlinedIcon
+    },
+    {
+        name:'schedule',
+        title:'Schedule',
+        icon:ScheduleSendOutlinedIcon
+    },
+  
+    {
+        name:'spam',
+        title:'Spam',
+        icon:ReportOutlinedIcon
+    },
+    {
+        name:'snoozed',
+        title:'Snoozed',
+        icon:AccessTimeOutlinedIcon
+    },
 ]

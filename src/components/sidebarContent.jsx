@@ -91,14 +91,23 @@ const Container = styled(Box)`
     }
 `
 
+// const ComposeButton = styled(Button)`
+//     background: #c2e7ff;
+//     color: #001d35;
+//     border-radius: 16px;
+//     padding: 15px;
+//     min-width: 140px;
+//     text-transform: none;
+// `
 const ComposeButton = styled(Button)`
-    background: #c2e7ff;
-    color: #001d35;
-    border-radius: 16px;
-    padding: 15px;
-    min-width: 140px;
-    text-transform: none;
-`
+  background: ${({ openSidebar }) => (openSidebar ? "#c2e7ff" : "#c2e7ff")};
+  color: #001d35;
+  border-radius: ${({ openSidebar }) => (openSidebar ? "16px" : "16px")};
+  padding: 15px;
+  min-width: ${({ openSidebar }) => (openSidebar ? "140px" : "40px")};
+  text-transform: none;
+  transition: none;
+`;
 
 // const SidebarContent = () => {
 
@@ -137,7 +146,7 @@ const ComposeButton = styled(Button)`
 //     )
 // }
 
-const SidebarContent = () => {
+const SidebarContent = ({openSidebar}) => {
     const [showMoreData, setShowMoreData] = useState(false);
     const [openDrawer, setOpenDrawer] = useState(false);
     const { type } = useParams();
@@ -152,15 +161,16 @@ const SidebarContent = () => {
 
     return (
         <Container>
-            <ComposeButton onClick={() => onComposeClick()}>
-                <CreateOutlined style={{ marginRight: 10 }} />Compose
-            </ComposeButton>
+          <ComposeButton openSidebar={openSidebar} onClick={() => onComposeClick()}>
+  <CreateOutlined style={{ marginRight: openSidebar ? 10 : 0 }} />
+  {openSidebar ? "Compose" : null}
+</ComposeButton>
             <List>
                 {Sidebar_Data.map(data => (
                     <NavLink key={data.name} to={`${routes.emails.path}/${data.name}`}>
                         <ListItem style={type === data.name.toLowerCase() ? {
                             backgroundColor: '#d3e3fd',
-                            borderRadius: '0 16px 16px 0'
+                            borderRadius: openSidebar ? '0 16px 16px 0' : '40%', 
                         } : {}}><data.icon fontSize="small" />{data.title}</ListItem>
                     </NavLink>
                 ))}
@@ -178,8 +188,8 @@ const SidebarContent = () => {
             color:'black',
             justifyContent: 'space-between',
             alignItems: 'center',
-            paddingLeft: '16px', // Adjust the padding as needed
-            paddingRight: '16px' // Adjust the padding as needed
+            paddingLeft: '16px', 
+            paddingRight: '16px' 
         }}
     >
 &nbsp;&nbsp;{showMoreData ? '▲' : '▼'}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{showMoreData ? "Less" : "More"}
@@ -190,28 +200,28 @@ const SidebarContent = () => {
             {showMoreData && (
                 <List>
                     {Sidebar_Datamore.map(data => (
-                        <NavLink key={data.name} >
+                        <NavLink key={data.name} to={`${routes.emails.path}/${data.name}`} >
                             <ListItem style={type === data.name.toLowerCase() ? {
+                                 backgroundColor: '#d3e3fd',
+                                //  borderRadius: '0 16px 16px 0'
+                                borderRadius: openSidebar ? '0 16px 16px 0' : '40%',
                                    
                             } : {}}><data.icon fontSize="small" />{data.title}</ListItem>
                         </NavLink>
                     ))}
                 </List>
-                //  <List>
-                //            {
-                //                      Sidebar_Datamore.map(data=>(
-                //                          <ListItem>
-                //                              <data.icon/>{data.title}
-                                             
-                //                          </ListItem>
-                //                      ))
-                //                  }
-                //              </List>
+              
             )}
-         <div style={{display:'flex',justifyContent:'space-between',marginTop:20,marginLeft:20}}>
-    Labels
-   <div > <AddOutlinedIcon style={{marginRight:10}}/></div>
+   <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 20, marginLeft: 20 }}>
+  {openSidebar && (
+    <>
+      Labels
+      <div><AddOutlinedIcon style={{ marginRight: 10 }} /></div>
+    </>
+  )}
+  {!openSidebar && <div><AddOutlinedIcon style={{ marginRight: 10 }} /></div>}
 </div>
+
 <ComposeMail openDrawer={openDrawer} setOpenDrawer={setOpenDrawer}/>
         </Container>
     )
