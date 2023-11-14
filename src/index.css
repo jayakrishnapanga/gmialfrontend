@@ -11,3 +11,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.compose__footerLeft button {
+  display: flex;
+  align-items: center;
+  cursor:pointer;
+  border: 0;
+  background-color: #297be6;
+  outline: 0;
+  color: #fff;
+  font-size: 15px;
+  padding: 0px 0px 0px 15px !important;
+  border-radius: 20px;
+  letter-spacing: 1px;
+}
+
+.compose__footerLeft button svg {
+  border-left: 1px solid #00000052;
+  margin-left: 15px;
+  padding: 6px 2px 6px 2px;
+}

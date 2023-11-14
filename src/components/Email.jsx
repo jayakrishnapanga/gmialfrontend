@@ -7,9 +7,21 @@ import { API_URLS } from "../services/api.urls";
 import { useNavigate } from "react-router-dom";
 import { routes } from "../routes/routes";
 
+// const Wrapper = styled(ListItem)`
+//     padding: 0 0 0 10px;
+//     background: #f2f6fc;
+//     cursor: pointer;
+//     & > div {
+//         display: flex;
+//         width: 100%
+//     }
+//     & > div > p {
+//         font-size: 14px;
+//     }
+// `;
 const Wrapper = styled(ListItem)`
     padding: 0 0 0 10px;
-    background: #f2f6fc;
+    background: ${({ select }) => (select ? '#2196F3' : '#f2f6fc')};
     cursor: pointer;
     & > div {
         display: flex;

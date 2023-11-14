@@ -22,6 +22,10 @@ import DriveFileMoveOutlinedIcon from '@mui/icons-material/DriveFileMoveOutlined
 import LabelOutlinedIcon from '@mui/icons-material/LabelOutlined';
 import { Sidebar_Datamore } from '../config/sidebarconfig';
 import { Sidebar_Datamoreexception } from '../config/sidebarconfig';
+import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
+import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
+import KeyboardOutlinedIcon from '@mui/icons-material/KeyboardOutlined';
+import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined';
 const Emails = () => {
     const [starredEmail, setStarredEmail] = useState(false);
     const [selectedEmails, setSelectedEmails] = useState([]);
@@ -69,14 +73,16 @@ const Emails = () => {
     }
     return (
         <Box style={openDrawer ? { marginLeft: 250, width: '100%' } : { marginLeft:90,width: '100%' } }>
+        <Box style={{display:'flex',justifyContent:'space-between'}}>
         <Box style={{ padding: '20px 10px 0 10px', display: 'flex', alignItems: 'center', backgroundColor: select ? 'white' : 'transparent'  }}>
-            <Checkbox  size="small" onChange={(e) => selectAllEmails(e)} /> {'▼'}
+            <Checkbox  size="small" onChange={(e) => selectAllEmails(e)} /> <ArrowDropDownOutlinedIcon/>
            {!select &&(
              <>
              <RefreshOutlinedIcon style={{marginLeft:20}}/>
              <MoreVertOutlinedIcon style={{marginLeft:10}}/>
              </>
            )}
+          
            
             {select && (
     <Box style={{display:'flex',}}>
@@ -97,6 +103,16 @@ const Emails = () => {
         </Box>
     </Box>
 )}
+      
+        </Box>
+        <Box style={{marginTop:30, display :'flex', justifyContent:'center',}}>
+            <Typography style={{fontSize:'10px',marginTop:'6px',paddingRight:'6px'}}> 1-50 of 329</Typography>
+            <ArrowBackIosNewOutlinedIcon style={{fontSize:'11px',marginTop:'8px',paddingRight:'10px'}}/>
+            <ArrowForwardIosOutlinedIcon style={{fontSize:'11px' ,marginTop:'8px', paddingLeft:'10px',paddingRight:'10px'}}/>
+            <KeyboardOutlinedIcon/>
+            <ArrowDropDownOutlinedIcon />
+                    </Box>
+
         </Box>
         {type === 'inbox' &&
             <Box style={{ display: 'flex', marginLeft: 20, marginTop: 10 }}>
