@@ -80,6 +80,12 @@ import { useState } from "react";
 import useApi from "../hooks/useApi"; 
 import { API_URLS } from "../services/api.urls";
 
+import TextFieldsIcon from '@mui/icons-material/TextFields';
+import FormatBoldIcon from '@mui/icons-material/FormatBold';
+import FormatItalicIcon from '@mui/icons-material/FormatItalic';
+import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';
+import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 
 // const dialogstyle = {
 //     height: '70%',
@@ -130,6 +136,7 @@ const RecipientWrapper = styled(Box)`
 const ComposeMail = ({openDrawer,setOpenDrawer}) => {
    
     const[bgcolor,Setbgcolor]=useState(false)
+    const[sFormatBarActive,setsFormatBarActive]=useState(false)
     const [fullscreen, setFullscreen] = useState(false);
     const [minimized, setMinimized] = useState(false);
     const  sentEmailService=useApi(API_URLS.saveSentEmails)
@@ -159,20 +166,24 @@ const ComposeMail = ({openDrawer,setOpenDrawer}) => {
       };
 
       const dialogStyle = {
-        height: minimized ? 'auto' : '90%',
-        width: minimized ? '30%' : '80%',
+        height: minimized ? '50px' : '90%',
+        width: minimized ? '400px' : '80%',
         position: 'fixed',
+        top: minimized ? 'auto' : '50%',
+        left: minimized ? 'auto' : '50%',
+        transform: minimized ? 'none' : 'translate(-50%, -50%)',
+        bottom: minimized ? '0' : '2%',
+        right: minimized ? '0' : '2%',
         maxWidth: '100%',
-        right: minimized ? '2%' : '0',
-        bottom: minimized ? '2%' : '0',
         maxHeight: '100%',
         boxShadow: 'none',
         transition: 'all 0.3s ease',
-        paddingBottom:0,
-        margin:minimized ? '0px':'10px',
-       padding:minimized ? '0px':'10px',
+        paddingBottom: 0,
+        margin: minimized ? '0px' : '10px',
+        padding: minimized ? '0px' : '10px',
         borderRadius: minimized ? '0' : fullscreen ? '0' : '10px 10px 0 0',
       };
+      
     const dialogstyle = {
         height: minimized ? 'auto' : fullscreen ? '100%' : '75%',
         width: minimized ? '30%' : fullscreen ? '100%' : '40%',
@@ -263,6 +274,9 @@ const ComposeMail = ({openDrawer,setOpenDrawer}) => {
       
         setOpenDrawer(false);
       }
+      const formatButton=()=>{
+        setsFormatBarActive(true)
+      }
       
 
     const onValueChange = (e) => {
@@ -329,7 +343,7 @@ const ComposeMail = ({openDrawer,setOpenDrawer}) => {
                             </button>
                         </div>
         <Box sx={{ display: 'flex', gap: '15px' }}>
-        <FormatColorTextOutlinedIcon style={{paddingLeft:10,PaddingRight:6}} />
+        <FormatColorTextOutlinedIcon onClick={formatButton} style={{paddingLeft:10,PaddingRight:6}} />
         <AttachFileOutlinedIcon style={{paddingLeft:6}} />
         <InsertLinkOutlinedIcon style={{paddingLeft:6}}/>
         <InsertEmoticonOutlinedIcon style={{paddingLeft:6}}/>
